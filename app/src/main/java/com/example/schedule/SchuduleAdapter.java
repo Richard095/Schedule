@@ -2,7 +2,6 @@ package com.example.schedule;
 
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,16 @@ public class SchuduleAdapter extends RecyclerView.Adapter<SchuduleAdapter.ViewHo
 
     private Context context;
     private ArrayList<Subject>subjectList;
+    private OnSubjectClickListener onSubjectClickListener;
+
+    public interface OnSubjectClickListener{
+        void onSubjectClick(Subject subject);
+    }
+
+    public void setOnSubjectClickListener(OnSubjectClickListener onSubjectClickListener) {
+        this.onSubjectClickListener = onSubjectClickListener;
+    }
+
     public SchuduleAdapter (Context context, ArrayList<Subject> subjectList){
         this.context = context;
         this.subjectList = subjectList;
@@ -31,7 +40,7 @@ public class SchuduleAdapter extends RecyclerView.Adapter<SchuduleAdapter.ViewHo
     @Override
     public void onBindViewHolder( SchuduleAdapter.ViewHolder viewHolder, int position) {
 
-        Subject subject = subjectList.get(position);
+        final Subject subject = subjectList.get(position);
 
         viewHolder.tv_subject_name.setText(subject.getSubject_name());
         viewHolder.tv_teacher.setText(subject.getTeacher());
@@ -40,7 +49,13 @@ public class SchuduleAdapter extends RecyclerView.Adapter<SchuduleAdapter.ViewHo
         viewHolder.tv_end_class.setText(Integer.toString(subject.getHour_end_class())+":00");
         viewHolder.tv_indicator.setText(subject.getIndicator());
         viewHolder.iv_On_Classe.setImageResource(subject.getImage_on_off());
-        //viewHolder.iv_On_Classe.setImageDrawable(ContextCompat.getDrawable(context,subject.getImage_on_off()));
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSubjectClickListener.onSubjectClick(subject);
+            }
+        });
 
     }
 
