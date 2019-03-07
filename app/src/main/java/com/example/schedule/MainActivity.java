@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
-
     public static final String KEY_DATA = "keyData";
 
     RecyclerView subject_list_view;
@@ -81,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
     public  String[] getDay(){
 
@@ -164,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
             if (currentlyDay == subjectList.get(i).getDay()) {
                 temp_subjectList.add(subjectList.get(i));
                 changeStatusClass();
+
 
                 SchuduleAdapter schuduleAdapter = new SchuduleAdapter(this,temp_subjectList);
                 subject_list_view.setAdapter(schuduleAdapter);

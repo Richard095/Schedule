@@ -42,6 +42,7 @@ public class SchuduleAdapter extends RecyclerView.Adapter<SchuduleAdapter.ViewHo
 
         final Subject subject = subjectList.get(position);
 
+
         viewHolder.tv_subject_name.setText(subject.getSubject_name());
         viewHolder.tv_teacher.setText(subject.getTeacher());
         viewHolder.tv_classroom.setText(subject.getClassroom());
@@ -56,6 +57,7 @@ public class SchuduleAdapter extends RecyclerView.Adapter<SchuduleAdapter.ViewHo
                 onSubjectClickListener.onSubjectClick(subject);
             }
         });
+
 
     }
 

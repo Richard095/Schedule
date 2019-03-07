@@ -17,7 +17,7 @@ public class DetailSubject extends AppCompatActivity {
     String subjectName;
     int key_subject;
 
-    ArrayList<Subject> datail_lista;
+    ArrayList<Subject> datail_lista = new ArrayList<>();
     ArrayList<Subject> ListSubject  = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,8 @@ public class DetailSubject extends AppCompatActivity {
             System.out.println("LA CLAVE ESS : ------------->"+key_subject);
 
             if (key_subject == datail_lista.get(i).getKeySubject()){
-
                 ListSubject.add(datail_lista.get(i));
+
                 DetailAdapter detail = new DetailAdapter(this,ListSubject);
                 detail_subject_list.setAdapter(detail);
             }

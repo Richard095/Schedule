@@ -29,7 +29,29 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
     public void onBindViewHolder( DetailAdapter.ViewHolder viewHolder, int position) {
         final Subject subject = subjectList.get(position);
 
-        viewHolder.tvday.setText(Integer.toString(subject.getDay()));
+        int CheckDay = subjectList.get(position).getDay();
+        switch (CheckDay) {
+            case 1:
+                viewHolder.tvday.setText("Lunes");
+                break;
+            case 2:
+                viewHolder.tvday.setText("Martes");
+                break;
+            case 3:
+                viewHolder.tvday.setText("Miercoles");
+                break;
+            case 4:
+                viewHolder.tvday.setText("Jueves");
+                break;
+            case 5:
+                viewHolder.tvday.setText("Viernes");
+                break;
+
+            default:
+                break;
+        }
+
+        //viewHolder.tvday.setText(Integer.toString(subject.getDay()));
         viewHolder.hour_start.setText(Integer.toString(subject.getHour_start_class())+":00");
         viewHolder.hour_end.setText(Integer.toString(subject.getHour_end_class())+":00");
         viewHolder.classroom.setText(subject.getClassroom());
