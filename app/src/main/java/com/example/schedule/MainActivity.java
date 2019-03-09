@@ -162,8 +162,6 @@ public class MainActivity extends AppCompatActivity {
             if (currentlyDay == subjectList.get(i).getDay()) {
                 temp_subjectList.add(subjectList.get(i));
                 changeStatusClass();
-
-
                 SchuduleAdapter schuduleAdapter = new SchuduleAdapter(this,temp_subjectList);
                 subject_list_view.setAdapter(schuduleAdapter);
 

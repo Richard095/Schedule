@@ -18,7 +18,6 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
         this.subjectList = subjectList;
     }
 
-
     @Override
     public DetailAdapter.ViewHolder onCreateViewHolder( ViewGroup parent, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.detail_list,parent,false);
