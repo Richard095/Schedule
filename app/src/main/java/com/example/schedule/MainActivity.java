@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     String today;
     String day;
 
+
     ArrayList<Subject> subjectList = new ArrayList<>();
     ArrayList<Subject>temp_subjectList = new ArrayList<>();
     @Override
