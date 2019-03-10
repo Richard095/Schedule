@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     //Version 1
 
 
+
     RecyclerView subject_list_view;
     TextView tv_day;
     String today;
