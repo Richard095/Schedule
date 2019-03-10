@@ -27,10 +27,10 @@ public class DetailSubject extends AppCompatActivity {
         detail_subject_list = findViewById(R.id.detail_subject_list);
         tv_name_Subject = findViewById(R.id.tv_name_Subject);
 
-        //Getting objects from MainActivity
+        //**Getting objects from MainActivity
         Bundle extras = getIntent().getExtras();
 
-        Subject subject = extras.getParcelable(MainActivity.KEY_DATA);
+        Subject subject = extras.getParcelable(ScheduleFragment.KEY_DATA);
         if (subject != null){
             key_subject=subject.getKeySubject();
             subjectName = subject.getSubject_name();
@@ -38,7 +38,6 @@ public class DetailSubject extends AppCompatActivity {
         tv_name_Subject.setText(subjectName);
 
        showView();
-
 
     }
 
