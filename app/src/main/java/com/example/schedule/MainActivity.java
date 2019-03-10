@@ -16,6 +16,9 @@ import java.util.GregorianCalendar;
 public class MainActivity extends AppCompatActivity {
     public static final String KEY_DATA = "keyData";
 
+    //Version 1
+
+
     RecyclerView subject_list_view;
     TextView tv_day;
     String today;
