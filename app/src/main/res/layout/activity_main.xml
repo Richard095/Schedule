@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".MainActivity">
 
     <fragment
@@ -13,5 +12,12 @@
         android:layout_height="wrap_content"
         android:name="com.example.schedule.ScheduleFragment"
         tools:layout="@layout/fragment_schedule"/>
+
+    <fragment
+        android:id="@+id/DetailFragmentId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.example.schedule.DetailFragment"
+        tools:layout="@layout/fragment_detail"/>
 
 </LinearLayout>

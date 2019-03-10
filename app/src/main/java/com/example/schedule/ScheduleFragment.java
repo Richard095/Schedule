@@ -142,13 +142,6 @@ public class ScheduleFragment extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -177,8 +170,7 @@ public class ScheduleFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onSubjectSelected(Subject subject,ArrayList<Subject> subjects);
     }
 
 
@@ -267,22 +259,15 @@ public class ScheduleFragment extends Fragment {
             if (currentlyDay == subjectList.get(i).getDay()) {
                 temp_subjectList.add(subjectList.get(i));
                 changeStatusClass();
-                SchuduleAdapter schuduleAdapter = new SchuduleAdapter(getActivity(),temp_subjectList);
+
+                final SchuduleAdapter schuduleAdapter = new SchuduleAdapter(getActivity(),temp_subjectList);
                 subject_list_view.setAdapter(schuduleAdapter);
 
                 //Method Onclick
                 schuduleAdapter.setOnSubjectClickListener(new SchuduleAdapter.OnSubjectClickListener() {
                     @Override
                     public void onSubjectClick(Subject subject) {
-
-                        final Subject subject1 = new Subject(subject.getDay(),subject.getSubject_name(),subject.getTeacher(),
-                                subject.getClassroom(),subject.getHour_start_class(),subject.getHour_end_class(),
-                                subject.getIndicator(),subject.getImage_on_off(),subject.getKeySubject());
-
-                        Intent DetailSubjet = new Intent(getActivity(),DetailSubject.class);
-                        DetailSubjet.putExtra("miLista", subjectList);
-                        DetailSubjet.putExtra(KEY_DATA,subject1);
-                        startActivity(DetailSubjet);
+                        mListener.onSubjectSelected(subject,subjectList);
                     }
                 });
 
