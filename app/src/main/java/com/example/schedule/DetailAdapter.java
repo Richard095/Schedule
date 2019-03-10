@@ -28,6 +28,8 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
     public void onBindViewHolder( DetailAdapter.ViewHolder viewHolder, int position) {
         final Subject subject = subjectList.get(position);
 
+
+
         int CheckDay = subjectList.get(position).getDay();
         switch (CheckDay) {
             case 1:
