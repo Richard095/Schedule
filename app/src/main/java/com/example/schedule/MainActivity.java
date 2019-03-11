@@ -3,6 +3,8 @@ package com.example.schedule;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,5 +36,25 @@ public class MainActivity extends AppCompatActivity implements ScheduleFragment.
 
         Toast.makeText(this,"recibi------------------------__>"+subjects.get(3).getSubject_name(),Toast.LENGTH_LONG).show();
 
+    }
+
+    //Menu Options
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.item_new_schedule) {
+            Toast.makeText(MainActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -33,7 +33,6 @@ public class ScheduleFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-
     public static final String KEY_DATA = "keyData";
 
     TextView tv_day;
@@ -138,7 +137,6 @@ public class ScheduleFragment extends Fragment {
                 "LC1",17,19,"PM",R.drawable.ic_timer_black_24dp,106));
 
         showSubject();
-
         return view;
     }
 
