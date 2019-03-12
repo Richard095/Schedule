@@ -11,8 +11,8 @@ public class Subject implements Parcelable {
     private int hour_start_class;
     private int hour_end_class;
     private String indicator;  //AM | PM
-    private int image_on_off;
-    private int keySubject;
+    private int image_on_off; //NO
+    private int keySubject;  //NO
 
     public Subject(int day,String subject_name,String teacher,String classroom,int hour_start_class,
                    int hour_end_class,String indicator,int image_on_off,int keySubject){

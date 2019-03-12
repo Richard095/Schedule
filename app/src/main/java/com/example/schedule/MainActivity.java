@@ -1,21 +1,26 @@
 package com.example.schedule;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
+import android.support.v7.widget.Toolbar;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ScheduleFragment.OnFragmentInteractionListener,
         DetailFragment.OnFragmentInteractionListener {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar =  findViewById(R.id.main_activity_toolbar);
+        setSupportActionBar(toolbar);
 
     }
 
@@ -53,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements ScheduleFragment.
 
         if (id == R.id.item_new_schedule) {
             Toast.makeText(MainActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle();
+            startActivity(intent,bundle);
             return true;
         }
         return super.onOptionsItemSelected(item);
