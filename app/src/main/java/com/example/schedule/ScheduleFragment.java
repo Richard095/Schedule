@@ -2,6 +2,8 @@ package com.example.schedule;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -93,6 +95,9 @@ public class ScheduleFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         subject_list_view.setLayoutManager(linearLayoutManager);
 
+        gettingData();
+
+
         //Lunes
         subjectList.add(new Subject(1,"Desarrollo de App.Moviles","Ing.Hugo Rene Larraga",
                 "LC2",8,10,"AM",R.drawable.ic_timer_black_24dp,101));
@@ -135,6 +140,8 @@ public class ScheduleFragment extends Fragment {
 
         subjectList.add(new Subject(5,"Programacion logica y funcional","Ing.Abundis",
                 "LC1",17,19,"PM",R.drawable.ic_timer_black_24dp,106));
+
+
 
         showSubject();
         return view;
@@ -291,6 +298,26 @@ public class ScheduleFragment extends Fragment {
 
         }
 
+    }
+
+    public void gettingData(){
+        SubjectDBHelper subjectDBHelper = new SubjectDBHelper(getActivity());
+        SQLiteDatabase database  = subjectDBHelper.getReadableDatabase();
+
+        Cursor cursor = database.query(SubjectContract.subjectColumns.TABLE_NAME,null,null,null,null,null,null,null);
+
+
+        while (cursor.moveToNext()){
+          subjectList.add(new Subject(cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getInt(5),
+                  cursor.getInt(6),cursor.getString(7),R.drawable.ic_timer_off_black_24dp,cursor.getInt(8)));
+
+          String dia = cursor.getString(1);
+          String Materia = cursor.getString(2);
+          String Teacher = cursor.getString(3);
+
+          Toast.makeText(getActivity(),dia +" "+ " "+Materia +" "+Teacher,Toast.LENGTH_LONG).show();
+        }
+        database.close();
     }
 
 }
