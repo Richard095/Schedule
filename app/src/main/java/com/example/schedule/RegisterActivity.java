@@ -24,14 +24,14 @@ public class RegisterActivity extends AppCompatActivity {
     Button btn_initial_hour,btn_final_hour,btnregistrar;
     EditText et_subject,et_teacher,et_classroom,et_code;
     String indicatorAMPM_END;
-    int day,hourStart,hourEnd,Code;
+    int day,hourStart,hourEnd;
     int cod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        //References
+
         btn_initial_hour = findViewById(R.id.btn_initial_hour);
         btn_final_hour = findViewById(R.id.btn_final_hour);
         et_subject = findViewById(R.id.et_subject);
@@ -39,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         et_classroom = findViewById(R.id.et_classroom);
         btnregistrar=findViewById(R.id.btnregistrsr);
         et_code = findViewById(R.id.et_code);
+
         //Sending toolbar
         Toolbar toolbar = findViewById(R.id.register_toolbar);
         setSupportActionBar(toolbar);
@@ -73,9 +74,16 @@ public class RegisterActivity extends AppCompatActivity {
        btnregistrar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               registerSubjects();
+               if (et_code.getText().toString().trim().equalsIgnoreCase("")){
+                   Toast.makeText(RegisterActivity.this,"Llena todo los campos",Toast.LENGTH_LONG).show();
+               }else{
+                   registerSubjects();
+               }
+
            }
        });
+
+
     }
 
     public void arrayDays(){
@@ -131,14 +139,10 @@ public class RegisterActivity extends AppCompatActivity {
                         String AM_PM ;
                         if(hourOfDay < 12) {
                             AM_PM = "AM";
-
                         } else {
                             AM_PM = "PM";
-
                         }
-
                         button.setText(hourOfDay + ":" + minute +" "+ AM_PM);
-
                         if (button == btn_initial_hour){
                             hourStart=hourOfDay;
                             Toast.makeText(RegisterActivity.this,"Ahora es: "+hourStart,Toast.LENGTH_LONG).show();
@@ -163,7 +167,6 @@ public class RegisterActivity extends AppCompatActivity {
             String et_cod = et_code.getText().toString();
             cod = Integer.parseInt(et_cod);
 
-
             ContentValues values = new ContentValues();
 
             values.put(SubjectContract.subjectColumns.DAY,day);
@@ -179,10 +182,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             Toast.makeText(RegisterActivity.this,"Seleccionaste dias : "+ day,Toast.LENGTH_LONG).show();
     }
-
-
-
-
 }
 
 

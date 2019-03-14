@@ -23,14 +23,16 @@
     <fragment
         android:id="@+id/ScheduleFragmentId"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:name="com.example.schedule.ScheduleFragment"
         tools:layout="@layout/fragment_schedule"/>
 
     <fragment
         android:id="@+id/DetailFragmentId"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:name="com.example.schedule.DetailFragment"
         tools:layout="@layout/fragment_detail"/>
 

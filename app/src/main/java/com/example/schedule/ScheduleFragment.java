@@ -35,20 +35,17 @@ public class ScheduleFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    public static final String KEY_DATA = "keyData";
-
     TextView tv_day;
     String today;
     String day;
     RecyclerView subject_list_view;
-
     ArrayList<Subject> subjectList = new ArrayList<>();
     ArrayList<Subject>temp_subjectList = new ArrayList<>();
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
     public ScheduleFragment() {
@@ -89,14 +86,12 @@ public class ScheduleFragment extends Fragment {
 
         View  view = inflater.inflate(R.layout.fragment_schedule, container, false);
         subject_list_view = view.findViewById(R.id.subject_list_view);
-
         tv_day = view.findViewById(R.id.tv_day);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         subject_list_view.setLayoutManager(linearLayoutManager);
 
         gettingData();
-
 
         //Lunes
         subjectList.add(new Subject(1,"Desarrollo de App.Moviles","Ing.Hugo Rene Larraga",
@@ -246,9 +241,9 @@ public class ScheduleFragment extends Fragment {
     }
 
     public void showSubject(){
-
         int currentlyDay=0;
         String dayText="";
+
         String[] dateToday= getDay();
         for(int j=0;j<dateToday.length;j++){
             String day = dateToday[0];
@@ -257,7 +252,7 @@ public class ScheduleFragment extends Fragment {
             System.out.println(dateToday[1]);
         }
         tv_day.setText(dayText);
-        if(dayText=="Sabado" || dayText=="Domingo"){
+        if(dayText.equals("Sabado") || dayText.equals("Domingo")){
             Toast.makeText(getActivity(),"Hoy no tienes clase disfruta tu dia!!",Toast.LENGTH_LONG).show();
         }
         for (int i = 0; i < subjectList.size(); i++) {
