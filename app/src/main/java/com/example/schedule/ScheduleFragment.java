@@ -16,7 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -94,11 +96,12 @@ public class ScheduleFragment extends Fragment {
         gettingData();
 
         //Lunes
-        subjectList.add(new Subject(1,"Desarrollo de App.Moviles","Ing.Hugo Rene Larraga",
-                "LC2",8,10,"AM",R.drawable.ic_timer_black_24dp,101));
 
         subjectList.add(new Subject(1,"Computo Forense","Ing.Juan Mata",
                 "LC5",10,12,"PM",R.drawable.ic_timer_black_24dp,102));
+        subjectList.add(new Subject(1,"Desarrollo de App.Moviles","Ing.Hugo Rene Larraga",
+                "LC2",8,10,"AM",R.drawable.ic_timer_black_24dp,101));
+
         //Martes
         subjectList.add(new Subject(2,"Programacion web","Ing.Jaime",
                 "LC2",10,12,"PM",R.drawable.ic_timer_black_24dp,103));
@@ -258,8 +261,8 @@ public class ScheduleFragment extends Fragment {
         for (int i = 0; i < subjectList.size(); i++) {
             if (currentlyDay == subjectList.get(i).getDay()) {
                 temp_subjectList.add(subjectList.get(i));
+                Collections.sort(temp_subjectList);
                 changeStatusClass();
-
                 final SchuduleAdapter schuduleAdapter = new SchuduleAdapter(getActivity(),temp_subjectList);
                 subject_list_view.setAdapter(schuduleAdapter);
 

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
-
+import java.util.Arrays;
 
 
 public class SchuduleAdapter extends RecyclerView.Adapter<SchuduleAdapter.ViewHolder> {
@@ -57,6 +57,7 @@ public class SchuduleAdapter extends RecyclerView.Adapter<SchuduleAdapter.ViewHo
                 onSubjectClickListener.onSubjectClick(subject);
             }
         });
+
 
 
     }

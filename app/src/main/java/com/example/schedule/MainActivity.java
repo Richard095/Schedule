@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements ScheduleFragment.OnFragmentInteractionListener,
         DetailFragment.OnFragmentInteractionListener {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +32,12 @@ public class MainActivity extends AppCompatActivity implements ScheduleFragment.
     public void onSubjectSelected(Subject subject,ArrayList<Subject> subjects) {
         //Toast.makeText(this,subject.getSubject_name(),Toast.LENGTH_LONG).show();
 
-        DetailFragment detailFragment =
+        final DetailFragment detailFragment =
                 (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.DetailFragmentId);
 
         detailFragment.KeySubject(subject.getKeySubject());
         detailFragment.getArrayList(subjects);
+
 
         Toast.makeText(this,"recibi------------------------__>"+subjects.get(3).getSubject_name(),Toast.LENGTH_LONG).show();
 

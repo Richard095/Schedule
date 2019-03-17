@@ -1,9 +1,7 @@
 package com.example.schedule;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-public class Subject implements Parcelable {
+public class Subject implements  Comparable<Subject> {
     private int day;
     private String subject_name;
     private String teacher;
@@ -99,46 +97,14 @@ public class Subject implements Parcelable {
         this.keySubject = keySubject;
     }
 
-    protected Subject(Parcel in) {
-        day = in.readInt();
-        subject_name = in.readString();
-        teacher = in.readString();
-        classroom = in.readString();
-        hour_start_class = in.readInt();
-        hour_end_class = in.readInt();
-        indicator = in.readString();
-        image_on_off = in.readInt();
-        keySubject = in.readInt();
-    }
-
     @Override
-    public int describeContents() {
+    public int compareTo( Subject subject) {
+        if (hour_start_class < subject.hour_start_class) {
+            return -1;
+        }
+        if (hour_start_class > subject.hour_start_class) {
+            return 1;
+        }
         return 0;
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(day);
-        dest.writeString(subject_name);
-        dest.writeString(teacher);
-        dest.writeString(classroom);
-        dest.writeInt(hour_start_class);
-        dest.writeInt(hour_end_class);
-        dest.writeString(indicator);
-        dest.writeInt(image_on_off);
-        dest.writeInt(keySubject);
-    }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Subject> CREATOR = new Parcelable.Creator<Subject>() {
-        @Override
-        public Subject createFromParcel(Parcel in) {
-            return new Subject(in);
-        }
-
-        @Override
-        public Subject[] newArray(int size) {
-            return new Subject[size];
-        }
-    };
 }
