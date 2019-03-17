@@ -21,7 +21,7 @@ import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Button btn_initial_hour,btn_final_hour,btnregistrar;
+    Button btn_initial_hour,btn_final_hour,btnregiter;
     EditText et_subject,et_teacher,et_classroom,et_code;
     String indicatorAMPM_END;
     int day,hourStart,hourEnd;
@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         et_subject = findViewById(R.id.et_subject);
         et_teacher = findViewById(R.id.et_teacher);
         et_classroom = findViewById(R.id.et_classroom);
-        btnregistrar=findViewById(R.id.btnregistrsr);
+        btnregiter=findViewById(R.id.btnregister);
         et_code = findViewById(R.id.et_code);
 
         //Sending toolbar
@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-       btnregistrar.setOnClickListener(new View.OnClickListener() {
+        btnregiter.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                if (et_code.getText().toString().trim().equalsIgnoreCase("")){
@@ -83,7 +83,6 @@ public class RegisterActivity extends AppCompatActivity {
            }
        });
 
-
     }
 
     public void arrayDays(){
@@ -92,13 +91,11 @@ public class RegisterActivity extends AppCompatActivity {
                 R.array.day_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
                switch(pos) {
                    case 0:
-
                        break;
                    case 1:
                        day = 1;
@@ -117,10 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                        break;
 
                    default:}
-
-
            }
-
            @Override
            public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -131,11 +125,9 @@ public class RegisterActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         final int mHour = c.get(Calendar.HOUR_OF_DAY);
         int mMinute = c.get(Calendar.MINUTE);
-
         TimePickerDialog dialog =
                 new TimePickerDialog(RegisterActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override public void onTimeSet(TimePicker view,  int hourOfDay, int minute) {
-
                         String AM_PM ;
                         if(hourOfDay < 12) {
                             AM_PM = "AM";
@@ -152,16 +144,13 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.makeText(RegisterActivity.this,"Ahora es: "+hourEnd,Toast.LENGTH_LONG).show();
                             indicatorAMPM_END = AM_PM;
                         }
-
                     }
                 }, mHour, mMinute, true);
         dialog.show();
-
-
     }
 
     public void registerSubjects(){
-       SubjectDBHelper subjectDBHelper = new SubjectDBHelper(getApplicationContext());
+        SubjectDBHelper subjectDBHelper = new SubjectDBHelper(getApplicationContext());
         SQLiteDatabase database  = subjectDBHelper.getWritableDatabase();
 
             String et_cod = et_code.getText().toString();
@@ -177,7 +166,6 @@ public class RegisterActivity extends AppCompatActivity {
             values.put(SubjectContract.subjectColumns.HOUR_END_CLASS,hourEnd);
             values.put(SubjectContract.subjectColumns.INDICATOR,indicatorAMPM_END);
             values.put(SubjectContract.subjectColumns.KEY,cod);
-
             database.insert(SubjectContract.subjectColumns.TABLE_NAME,null,values);
 
             Toast.makeText(RegisterActivity.this,"Seleccionaste dias : "+ day,Toast.LENGTH_LONG).show();

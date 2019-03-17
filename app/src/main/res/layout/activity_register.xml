@@ -23,7 +23,7 @@
         android:id="@+id/et_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Materia"
+        android:hint="@string/Subject"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
@@ -35,7 +35,7 @@
         android:id="@+id/et_teacher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Profesor"
+        android:hint="@string/teacher"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
@@ -46,7 +46,7 @@
         android:id="@+id/et_classroom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Aula"
+        android:hint="@string/classroom"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
@@ -63,16 +63,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Seleccionar día: "
+            android:text="@string/choose_day"
             android:padding="16dp"/>
         <Spinner
             android:id="@+id/sp_days"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
@@ -86,25 +83,25 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="De"
+            android:text="@string/of"
             android:padding="16dp"/>
         <Button
             android:id="@+id/btn_initial_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00"
-            android:layout_marginRight="16dp"
+            android:text="@string/time"
+            android:layout_marginEnd="16dp"
             android:textColor="#555"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A"
+            android:text="@string/to"
             android:padding="16dp"/>
         <Button
             android:id="@+id/btn_final_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00"
+            android:text="@string/time"
             android:textColor="#555"/>
 
 
@@ -120,13 +117,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Codigo Materia : "
+            android:text="@string/subject_code"
             android:layout_marginTop="10dp"/>
         <EditText
             android:id="@+id/et_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Código"
+            android:hint="@string/code"
             android:layout_marginRight="25dp"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
@@ -140,13 +137,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button
-            android:id="@+id/btnregistrsr"
+            android:id="@+id/btnregister"
             android:backgroundTint="@color/colorPrimary"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#ffffff"
-            android:text="Guardar"/>
+            android:text="@string/save"/>
     </RelativeLayout>
 
 
