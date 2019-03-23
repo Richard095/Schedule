@@ -59,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -84,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
        });
 
     }
-
+    //Preparing dataDays for Spinner
     public void arrayDays(){
         Spinner spinner = findViewById(R.id.sp_days);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -121,6 +122,8 @@ public class RegisterActivity extends AppCompatActivity {
            }
        });
     }
+
+    //Getting time
     private void showTime(final Button button) {
         Calendar c = Calendar.getInstance();
         final int mHour = c.get(Calendar.HOUR_OF_DAY);
@@ -149,6 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    //Getting and registering data by DB SQLITE
     public void registerSubjects(){
         SubjectDBHelper subjectDBHelper = new SubjectDBHelper(getApplicationContext());
         SQLiteDatabase database  = subjectDBHelper.getWritableDatabase();

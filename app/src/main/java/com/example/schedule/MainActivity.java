@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements ScheduleFragment.
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-
     }
 
     @Override
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements ScheduleFragment.
         detailFragment.KeySubject(subject.getKeySubject());
         detailFragment.getArrayList(subjects);
 
-
         Toast.makeText(this,"recibi------------------------__>"+subjects.get(3).getSubject_name(),Toast.LENGTH_LONG).show();
 
     }
@@ -50,14 +48,12 @@ public class MainActivity extends AppCompatActivity implements ScheduleFragment.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
-
         if (id == R.id.item_new_schedule) {
             Toast.makeText(MainActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
+
             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
             Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle();
             startActivity(intent,bundle);

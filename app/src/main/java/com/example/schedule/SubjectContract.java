@@ -6,7 +6,6 @@ public class SubjectContract  {
     public class subjectColumns implements BaseColumns {
 
         public static final String TABLE_NAME = "subjects";
-
         public static final String DAY = "day";
         public static final String SUBJECT_NAME = "subject_name";
         public static final String TEACHER = "teacher";
