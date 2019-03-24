@@ -1,26 +1,38 @@
 package com.example.schedule;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
 
 
 /**
@@ -31,7 +43,7 @@ import java.util.GregorianCalendar;
  * Use the {@link ScheduleFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScheduleFragment extends Fragment {
+public class ScheduleFragment extends Fragment implements DataAsyncTask.dataSubject{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -43,6 +55,18 @@ public class ScheduleFragment extends Fragment {
     RecyclerView subject_list_view;
     ArrayList<Subject> subjectList = new ArrayList<>();
     ArrayList<Subject>temp_subjectList = new ArrayList<>();
+
+    int dayJS=0;
+    String subject_nameJS="";
+    String teacherJS="";
+    String classroomJS="";
+    int start_classJS=0;
+    int end_classJS =0;
+    String indicatorJS="";
+    int KeySubjectJS=0;
+
+    private RequestQueue queue;
+     ArrayList<Subject> responseArray = new ArrayList<>();
 
 
     // TODO: Rename and change types of parameters
@@ -79,6 +103,9 @@ public class ScheduleFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        //NEW -------
+
+
     }
 
     @Override
@@ -89,11 +116,18 @@ public class ScheduleFragment extends Fragment {
         View  view = inflater.inflate(R.layout.fragment_schedule, container, false);
         subject_list_view = view.findViewById(R.id.subject_list_view);
         tv_day = view.findViewById(R.id.tv_day);
+        if (getActivity() != null){queue = Volley.newRequestQueue(this.getActivity() );}
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         subject_list_view.setLayoutManager(linearLayoutManager);
 
-        gettingData();
+        //gettingData();
+
+        DataAsyncTask asyncTask = new DataAsyncTask();
+        asyncTask.delegate=this;
+        asyncTask.execute();
+
+
 
         //Lunes
 
@@ -139,9 +173,9 @@ public class ScheduleFragment extends Fragment {
         subjectList.add(new Subject(5,"Programacion logica y funcional","Ing.Abundis",
                 "LC1",17,19,"PM",R.drawable.ic_timer_black_24dp,106));
 
+        //getDataFromApi();
 
-
-        showSubject();
+        //showSubject();
         return view;
     }
 
@@ -162,6 +196,40 @@ public class ScheduleFragment extends Fragment {
         mListener = null;
     }
 
+    //DOWNLOAD DATA FROM INTERNETXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //DOWNLOAD DATA FROM INTERNETXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    @Override
+    public void dataDownoaded(String data) {
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            JSONArray jsonArray = jsonObject.getJSONArray("schedules");
+            for (int i=0;i<jsonArray.length();i++){
+                JSONObject object=jsonArray.getJSONObject(i);
+
+                dayJS = object.getInt("day");
+                subject_nameJS = object.getString("subject_name");
+                teacherJS = object.getString("teacher");
+                classroomJS = object.getString("classroom");
+                start_classJS = object.getInt("start_class");
+                end_classJS = object.getInt("end_class");
+                indicatorJS = object.getString("indicator");
+                KeySubjectJS = object.getInt("KeySubject");
+
+                subjectList.add(new Subject(dayJS,subject_nameJS,teacherJS,classroomJS,start_classJS,
+                        end_classJS,indicatorJS,R.drawable.ic_timer_off_black_24dp,KeySubjectJS));
+
+                System.out.println("OOOOOOOOOOOOO>>>>>>>>>>>>  "+dayJS);
+
+                Toast.makeText(getActivity(),""+subject_nameJS,Toast.LENGTH_LONG).show();
+            }
+        }catch (JSONException e){
+
+        }
+        showSubject();
+        Log.d("DATA",data);
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -175,8 +243,6 @@ public class ScheduleFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onSubjectSelected(Subject subject,ArrayList<Subject> subjects);
     }
-
-
     /**Main functions*/
 
 
@@ -258,11 +324,13 @@ public class ScheduleFragment extends Fragment {
         if(dayText.equals("Sabado") || dayText.equals("Domingo")){
             Toast.makeText(getActivity(),"Hoy no tienes clase disfruta tu dia!!",Toast.LENGTH_LONG).show();
         }
+
         for (int i = 0; i < subjectList.size(); i++) {
             if (currentlyDay == subjectList.get(i).getDay()) {
                 temp_subjectList.add(subjectList.get(i));
                 Collections.sort(temp_subjectList);
                 changeStatusClass();
+
                 final SchuduleAdapter schuduleAdapter = new SchuduleAdapter(getActivity(),temp_subjectList);
                 subject_list_view.setAdapter(schuduleAdapter);
 
@@ -274,11 +342,8 @@ public class ScheduleFragment extends Fragment {
                     }
                 });
 
-
             }
         }
-
-
     }
     public void changeStatusClass(){
         int HourOfDay = getHourOfDay();
@@ -295,9 +360,9 @@ public class ScheduleFragment extends Fragment {
             }
 
         }
-
     }
 
+    //With SQLITE
     public void gettingData(){
         SubjectDBHelper subjectDBHelper = new SubjectDBHelper(getActivity());
         SQLiteDatabase database  = subjectDBHelper.getReadableDatabase();
@@ -317,5 +382,55 @@ public class ScheduleFragment extends Fragment {
         }
         database.close();
     }
+
+    //GET DATA FROM API_SERVICE
+
+    public void getDataFromApi(){
+        String url = "http://192.168.1.103/APISERVICE/";
+
+        final JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("schedules");
+                    for (int i=0;i<jsonArray.length();i++){
+                        JSONObject object=jsonArray.getJSONObject(i);
+
+                         dayJS = object.getInt("day");
+                         subject_nameJS = object.getString("subject_name");
+                         teacherJS = object.getString("teacher");
+                         classroomJS = object.getString("classroom");
+                         start_classJS = object.getInt("start_class");
+                         end_classJS = object.getInt("end_class");
+                         indicatorJS = object.getString("indicator");
+                         KeySubjectJS = object.getInt("KeySubject");
+
+                         subjectList.add(new Subject(dayJS,subject_nameJS,teacherJS,classroomJS,start_classJS,
+                                 end_classJS,indicatorJS,R.drawable.ic_timer_off_black_24dp,KeySubjectJS));
+
+                        System.out.println("OOOOOOOOOOOOO>>>>>>>>>>>>  "+dayJS);
+
+                        Toast.makeText(getActivity(),""+subject_nameJS,Toast.LENGTH_LONG).show();
+                    }
+
+
+
+
+                }catch (JSONException e){e.printStackTrace();}
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        queue.add(objectRequest);
+    }
+
+
+
+
+
+
 
 }
