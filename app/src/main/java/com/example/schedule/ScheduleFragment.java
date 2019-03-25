@@ -270,8 +270,6 @@ public class ScheduleFragment extends Fragment {
 
             }
         }
-
-
     }
     public void changeStatusClass(){
         int HourOfDay = getHourOfDay();
