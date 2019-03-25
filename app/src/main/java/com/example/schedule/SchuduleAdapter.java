@@ -58,8 +58,6 @@ public class SchuduleAdapter extends RecyclerView.Adapter<SchuduleAdapter.ViewHo
             }
         });
 
-
-
     }
 
     @Override

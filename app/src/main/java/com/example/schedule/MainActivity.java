@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements ScheduleFragment.
                 (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.DetailFragmentId);
 
         detailFragment.KeySubject(subject.getKeySubject());
+
         detailFragment.getArrayList(subjects);
 
 

@@ -1,8 +1,5 @@
 package com.example.schedule;
-
 import android.os.AsyncTask;
-import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,19 +10,22 @@ import java.nio.charset.Charset;
 
 public class DataAsyncTask extends AsyncTask<Void,Void,String> {
 
+
+    //Interface for send data to fragment
     public dataSubject delegate;
+
     public interface dataSubject{
         void dataDownoaded(String data);
     }
+
     @Override
     protected String doInBackground(Void... voids) {
         String data = "";
         try {
-            data= downladeData(new URL("http://192.168.1.103/APISERVICE/index.php"));
+            data= downladeData(new URL("http://10.10.83.232/APISERVICE/index.php"));
         }catch(IOException e){e.printStackTrace();}
         return data;
     }
-
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
@@ -33,7 +33,6 @@ public class DataAsyncTask extends AsyncTask<Void,Void,String> {
         delegate.dataDownoaded(s);
 
     }
-
     private String downladeData(URL url) throws IOException {
 
         String jsonResponse="";

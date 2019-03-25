@@ -118,19 +118,19 @@ public class ScheduleFragment extends Fragment implements DataAsyncTask.dataSubj
         tv_day = view.findViewById(R.id.tv_day);
         if (getActivity() != null){queue = Volley.newRequestQueue(this.getActivity() );}
 
+        //DEFINING LINEARLAYOUT
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         subject_list_view.setLayoutManager(linearLayoutManager);
 
-        //gettingData();
+        //gettingData();  FUNCTION FOR GET DATA FROM SQLITE
 
+
+        //EXECUTING ASINGTASC FOR GET DATA FROM API
         DataAsyncTask asyncTask = new DataAsyncTask();
         asyncTask.delegate=this;
         asyncTask.execute();
 
-
-
         //Lunes
-
         subjectList.add(new Subject(1,"Computo Forense","Ing.Juan Mata",
                 "LC5",10,12,"PM",R.drawable.ic_timer_black_24dp,102));
         subjectList.add(new Subject(1,"Desarrollo de App.Moviles","Ing.Hugo Rene Larraga",
@@ -173,9 +173,9 @@ public class ScheduleFragment extends Fragment implements DataAsyncTask.dataSubj
         subjectList.add(new Subject(5,"Programacion logica y funcional","Ing.Abundis",
                 "LC1",17,19,"PM",R.drawable.ic_timer_black_24dp,106));
 
-        //getDataFromApi();
 
-        //showSubject();
+
+        //showSubject(); NOT USED
         return view;
     }
 
@@ -189,7 +189,6 @@ public class ScheduleFragment extends Fragment implements DataAsyncTask.dataSubj
                     + " must implement OnFragmentInteractionListener");
         }
     }
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -240,6 +239,7 @@ public class ScheduleFragment extends Fragment implements DataAsyncTask.dataSubj
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+    //Interface for send data on ActivityMin
     public interface OnFragmentInteractionListener {
         void onSubjectSelected(Subject subject,ArrayList<Subject> subjects);
     }
@@ -383,8 +383,7 @@ public class ScheduleFragment extends Fragment implements DataAsyncTask.dataSubj
         database.close();
     }
 
-    //GET DATA FROM API_SERVICE
-
+    //GET DATA FROM API_SERVICE METHOD WITH VOLLEY, BUT IT DOESN'T WORK WELL
     public void getDataFromApi(){
         String url = "http://192.168.1.103/APISERVICE/";
 
@@ -426,11 +425,5 @@ public class ScheduleFragment extends Fragment implements DataAsyncTask.dataSubj
         });
         queue.add(objectRequest);
     }
-
-
-
-
-
-
 
 }
