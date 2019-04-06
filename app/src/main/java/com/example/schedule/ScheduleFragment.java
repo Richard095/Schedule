@@ -19,22 +19,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ScheduleFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ScheduleFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ScheduleFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-
-    public static final String KEY_DATA = "keyData";
 
     TextView tv_day;
     String today;
@@ -159,24 +149,13 @@ public class ScheduleFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+    /**Interface for interaction with Activity*/
     public interface OnFragmentInteractionListener {
         void onSubjectSelected(Subject subject,ArrayList<Subject> subjects);
     }
 
 
     /**Main functions*/
-
-
     public  String[] getDay(){
 
         Calendar c = Calendar.getInstance();

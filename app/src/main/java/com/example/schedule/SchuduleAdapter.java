@@ -68,15 +68,15 @@ public class SchuduleAdapter extends RecyclerView.Adapter<SchuduleAdapter.ViewHo
 
      class ViewHolder extends  RecyclerView.ViewHolder{
 
-        public TextView tv_subject_name;
-        public TextView tv_teacher;
-        public TextView tv_classroom;
-        public TextView tv_start_class;
-        public TextView tv_end_class;
-        public TextView tv_indicator;
-        public ImageView iv_On_Classe;
+         private TextView tv_subject_name;
+         private TextView tv_teacher;
+         private TextView tv_classroom;
+         private TextView tv_start_class;
+         private TextView tv_end_class;
+         private TextView tv_indicator;
+         private ImageView iv_On_Classe;
 
-        public ViewHolder( View itemView) {
+        private ViewHolder( View itemView) {
             super(itemView);
             tv_subject_name = itemView.findViewById(R.id.tv_subject_name);
             tv_teacher = itemView.findViewById(R.id.tv_teacher);
