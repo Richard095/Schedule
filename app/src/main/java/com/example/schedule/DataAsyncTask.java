@@ -22,7 +22,7 @@ public class DataAsyncTask extends AsyncTask<Void,Void,String> {
     protected String doInBackground(Void... voids) {
         String data = "";
         try {
-            data= downladeData(new URL("http://192.168.0.6/APISERVICE/index.php"));
+            data= downladeData(new URL("http://192.168.1.105/APISERVICE/index.php"));
         }catch(IOException e){e.printStackTrace();}
         return data;
     }

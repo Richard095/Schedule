@@ -14,18 +14,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -65,8 +58,7 @@ public class ScheduleFragment extends Fragment implements DataAsyncTask.dataSubj
     String indicatorJS="";
     int KeySubjectJS=0;
 
-    private RequestQueue queue;
-     ArrayList<Subject> responseArray = new ArrayList<>();
+
 
 
     // TODO: Rename and change types of parameters
@@ -116,7 +108,7 @@ public class ScheduleFragment extends Fragment implements DataAsyncTask.dataSubj
         View  view = inflater.inflate(R.layout.fragment_schedule, container, false);
         subject_list_view = view.findViewById(R.id.subject_list_view);
         tv_day = view.findViewById(R.id.tv_day);
-        if (getActivity() != null){queue = Volley.newRequestQueue(this.getActivity() );}
+        //if (getActivity() != null){queue = Volley.newRequestQueue(this.getActivity() );}
 
         //DEFINING LINEARLAYOUT
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -383,6 +375,8 @@ public class ScheduleFragment extends Fragment implements DataAsyncTask.dataSubj
         database.close();
     }
 
+
+    /**
     //GET DATA FROM API_SERVICE METHOD WITH VOLLEY, BUT IT DOESN'T WORK WELL
     public void getDataFromApi(){
         String url = "http://192.168.1.103/APISERVICE/";
@@ -425,5 +419,5 @@ public class ScheduleFragment extends Fragment implements DataAsyncTask.dataSubj
         });
         queue.add(objectRequest);
     }
-
+    */
 }
